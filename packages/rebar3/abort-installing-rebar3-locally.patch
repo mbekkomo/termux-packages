@@ -1,0 +1,24 @@
+diff --git a/apps/rebar/src/rebar_prv_local_install.erl b/apps/rebar/src/rebar_prv_local_install.erl
+index a01ab7b3..e61f3130 100644
+--- a/apps/rebar/src/rebar_prv_local_install.erl
++++ b/apps/rebar/src/rebar_prv_local_install.erl
+@@ -41,6 +41,7 @@ init(State) ->
+ 
+ -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
+ do(State) ->
++    ?ABORT("Aborting operation, installing rebar3 locally might break rebar3 package (Termux).", []),
+     case os:type() of
+         {win32, _} ->
+             ?ERROR("Sorry, this feature is not yet available on Windows.", []),
+diff --git a/apps/rebar/src/rebar_prv_local_upgrade.erl b/apps/rebar/src/rebar_prv_local_upgrade.erl
+index 74d198da..dbec1bd2 100644
+--- a/apps/rebar/src/rebar_prv_local_upgrade.erl
++++ b/apps/rebar/src/rebar_prv_local_upgrade.erl
+@@ -38,6 +38,7 @@ init(State) ->
+ 
+ -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
+ do(State) ->
++    ?ABORT("Aborting operation, installing rebar3 locally might break rebar3 package (Termux).", []),
+     case os:type() of
+         {win32, _} ->
+             ?ERROR("Sorry, this feature is not yet available on Windows.", []),
