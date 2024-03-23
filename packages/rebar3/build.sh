@@ -14,8 +14,7 @@ TERMUX_PKG_BUILD_IN_SRC=true
 TERMUX_PKG_PLATFORM_INDEPENDENT=true
 
 termux_step_make() {
-	ls
-	HOME=. escript bootstrap
+	HOME="$PWD" escript bootstrap
 }
 
 termux_step_make_install() {
