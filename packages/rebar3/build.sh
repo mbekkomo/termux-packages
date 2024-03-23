@@ -16,8 +16,5 @@ TERMUX_PKG_PLATFORM_INDEPENDENT=true
 termux_step_make() {
 	find /usr/lib/erlang/lib || 	find ${TERMUX_PREFIX}/lib/erlang/lib
 	escript bootstrap
-}
-
-termux_step_make_install() {
 	install -Dm755 -t "${TERMUX_PREFIX}/bin" rebar3
 }
