@@ -14,6 +14,7 @@ TERMUX_PKG_BUILD_IN_SRC=true
 TERMUX_PKG_PLATFORM_INDEPENDENT=true
 
 termux_step_make() {
+	find /usr/lib/erlang/lib || 	find ${TERMUX_PREFIX}/lib/erlang/lib
 	escript bootstrap
 }
 
