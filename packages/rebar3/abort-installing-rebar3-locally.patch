@@ -6,7 +6,7 @@ index a01ab7b3..e61f3130 100644
  
  -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
  do(State) ->
-+    ?ABORT("Aborting operation, installing rebar3 locally might break rebar3 package (Termux).", []),
++    ?ABORT("Aborting operation, installing rebar3 locally might break rebar3 package (termux)", []),
      case os:type() of
          {win32, _} ->
              ?ERROR("Sorry, this feature is not yet available on Windows.", []),
@@ -18,7 +18,7 @@ index 74d198da..dbec1bd2 100644
  
  -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
  do(State) ->
-+    ?ABORT("Aborting operation, installing rebar3 locally might break rebar3 package (Termux).", []),
++    ?ABORT("Aborting operation, installing rebar3 locally might break rebar3 package (termux)", []),
      case os:type() of
          {win32, _} ->
              ?ERROR("Sorry, this feature is not yet available on Windows.", []),
