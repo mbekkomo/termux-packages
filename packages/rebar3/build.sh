@@ -13,7 +13,7 @@ TERMUX_PKG_PLATFORM_INDEPENDENT=true
 termux_step_make() {
 	set -x
 	ESCRIPT_FLAGS=()
-	for path in "$TERMUX_PREFIX/lib/"*; do
+	for path in "$TERMUX_PREFIX/lib/erlang/lib/"*; do
 		ESCRIPT_FLAGS+=("-pa $path/include -pa $path/ebin")
 	done
 	escript "${ESCRIPT_FLAGS[@]}" bootstrap
