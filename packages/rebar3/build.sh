@@ -12,11 +12,7 @@ TERMUX_PKG_PLATFORM_INDEPENDENT=true
 
 termux_step_make() {
 	set -x
-	export ERL_INCLUDE_PATH=""
-	for path in "$TERMUX_PREFIX/lib/erlang/lib/"*; do
-		ERL_INCLUDE_PATH+="$path/include;$path/ebin;"
-	done
-	escript bootstrap
+	OTPROOT="$TERMUX_PREFIX/lib/erlang" escript bootstrap
 	install -Dm755 -t "${TERMUX_PREFIX}/bin" rebar3
 	set +x
 }
