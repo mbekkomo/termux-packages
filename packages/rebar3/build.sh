@@ -12,7 +12,11 @@ TERMUX_PKG_PLATFORM_INDEPENDENT=true
 
 termux_step_make() {
 	set -x
-	escript bootstrap
+	ESCRIPT_FLAGS=()
+	for path in "$TERMUX_PREFIX/lib/"*; do
+		ESCRIPT_FLAGS+=("-pa $path/include -pa $path/ebin")
+	done
+	escript "${ESCRIPT_FLAGS[@]}" bootstrap
 	install -Dm755 -t "${TERMUX_PREFIX}/bin" rebar3
 	set +x
 }
