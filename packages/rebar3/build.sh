@@ -14,7 +14,7 @@ termux_step_make() {
 	set -x
 	ESCRIPT_FLAGS=()
 	for path in "$TERMUX_PREFIX/lib/erlang/lib/"*; do
-		ESCRIPT_FLAGS+=("-pa $path/include -pa $path/ebin")
+		ESCRIPT_FLAGS+=("-pa" "$path/include" "-pa" "$path/ebin")
 	done
 	escript "${ESCRIPT_FLAGS[@]}" bootstrap
 	install -Dm755 -t "${TERMUX_PREFIX}/bin" rebar3
