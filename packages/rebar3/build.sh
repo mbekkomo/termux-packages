@@ -15,7 +15,8 @@ termux_step_configure() {
 	curl -O https://raw.githubusercontent.com/kerl/kerl/master/kerl
 	chmod +x kerl
 	export KERL_CONFIGURE_OPTIONS="--without-javac --without-wx"
-	CC=gcc CXX=gcc CFLAGS= LDFLAGS= ./kerl build-install 27.0 27.0 ~/.erl
+	export KERL_USE_AUTOCONF=true
+	CC=gcc CXX=g++ CFLAGS= LDFLAGS= ./kerl build-install 27.0 27.0 ~/.erl
 	source ~/.erl/activate
 }
 
