@@ -14,7 +14,7 @@ termux_step_configure() {
 	mkdir ~/.erl
 	curl -O https://raw.githubusercontent.com/kerl/kerl/master/kerl
 	chmod +x kerl
-	./kerl build-install 27.0 27.0 ~/.erl
+	CC=clang CXX=clang CFLAGS="" LDFLAGS="" ./kerl build-install 27.0 27.0 ~/.erl
 	source ~/.erl/activate
 }
 
