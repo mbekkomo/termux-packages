@@ -16,7 +16,7 @@ termux_step_configure() {
 
 termux_step_make() {
 	export ANDROID_NDK="$NDK" {TARGET_,}CMAKE="$(command -v cmake)" {TARGET_,}CMAKE_GENERATOR="Ninja"
-	cargo build -vv --all-features --jobs "${TERMUX_MAKE_PROCESSES}" --target "${CARGO_TARGET_NAME}" --release
+	cargo build --all-features --jobs "${TERMUX_MAKE_PROCESSES}" --target "${CARGO_TARGET_NAME}" --release
 }
 
 termux_step_make_install() {
