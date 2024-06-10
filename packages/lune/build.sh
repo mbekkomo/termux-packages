@@ -9,7 +9,7 @@ TERMUX_PKG_AUTO_UPDATE=true
 TERMUX_PKG_BUILD_IN_SRC=true
 
 termux_step_configure() {
-	termux_step_cmake
+	termux_setup_cmake
 	termux_setup_rust
 }
 
