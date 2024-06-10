@@ -10,11 +10,12 @@ TERMUX_PKG_BUILD_IN_SRC=true
 
 termux_step_configure() {
 	termux_setup_cmake
+	termux_setup_ninja
 	termux_setup_rust
 }
 
 termux_step_make() {
-	export ANDROID_NDK_HOME="$NDK"
+	export ANDROID_NDK="$NDK" CMAKE_GENERATOR="Ninja"
 	cargo build -vv --all-features --jobs "${TERMUX_MAKE_PROCESSES}" --target "${CARGO_TARGET_NAME}" --release
 }
 
