@@ -1,0 +1,52 @@
+diff --git a/Makefile.config b/Makefile.config
+index b7284bbd..35092742 100644
+--- a/Makefile.config
++++ b/Makefile.config
+@@ -21,14 +21,15 @@ CYC_PTHREAD_SET_STACK_SIZE ?=
+ OS = $(shell uname)
+ CC ?= cc
+ 
+-LIBS = -pthread -lcyclone -lck -lm -lcyclonebn
++LIBS = -pthread -lcyclone -lck -lm -lcyclonebn -landroid-complex-math
+ ifneq ($(OS),FreeBSD)
+ # libdl is part of libc on FreeBSD
+ LIBS += -ldl
+ endif
+ 
+ # Compiler options
+-CFLAGS       += $(CYC_PROFILING) $(CYC_GCC_OPT_FLAGS) -fPIC -Wall -Wno-shift-negative-value -Wno-unused-command-line-argument -Iinclude
++CPPFLAGS ?=
++CFLAGS       += $(CPPFLAGS) $(CYC_PROFILING) $(CYC_GCC_OPT_FLAGS) -fPIC -Wall -Wno-shift-negative-value -Wno-unused-command-line-argument -Iinclude
+ BASE_CFLAGS  ?= $(CYC_PROFILING) $(CYC_GCC_OPT_FLAGS) -fPIC -Wall -Wno-shift-negative-value -Wno-unused-command-line-argument
+ # Used by Cyclone to compile programs, no need for PIC there
+ BASE_PROG_CFLAGS   ?= $(CYC_PROFILING) $(CYC_GCC_OPT_FLAGS) -Wall
+@@ -38,7 +39,7 @@ COMP_INCDIRS       ?= -I$(PREFIX)/include
+ COMP_PROG_CFLAGS   ?= $(BASE_PROG_CFLAGS)
+ 
+ # Use these lines instead for debugging or profiling
+-#CFLAGS = -g -Wall
++#CFLAGS += $(CPPFLAGS) -g -Wall
+ #CFLAGS = -g -pg -Wall
+ 
+ # Linker options
+@@ -65,10 +66,10 @@ endif
+ 
+ 
+ # Commands "baked into" cyclone for invoking the C compiler
+-CC_PROG ?= "$(CC) ~src-file~ $(COMP_PROG_CFLAGS) ~cc-extra~ $(COMP_INCDIRS) -c -o ~exec-file~.o"
+-CC_EXEC ?= "$(CC) ~exec-file~.o ~obj-files~ $(LIBS) $(COMP_CFLAGS) ~ld-extra~ $(COMP_LIBDIRS) -o ~exec-file~"
+-CC_LIB  ?= "$(CC) ~src-file~ $(COMP_CFLAGS) ~cc-extra~ $(COMP_INCDIRS) -c -o ~exec-file~.o"
+-CC_SO   ?= "$(CC) -shared $(LDFLAGS) -o ~exec-file~.so ~exec-file~.o"
++CC_PROG ?= "clang ~src-file~ $(COMP_PROG_CFLAGS) ~cc-extra~ $(COMP_INCDIRS) -c -o ~exec-file~.o"
++CC_EXEC ?= "clang ~exec-file~.o ~obj-files~ $(LIBS) $(COMP_CFLAGS) ~ld-extra~ $(COMP_LIBDIRS) -o ~exec-file~"
++CC_LIB  ?= "clang ~src-file~ $(COMP_CFLAGS) ~cc-extra~ $(COMP_INCDIRS) -c -o ~exec-file~.o"
++CC_SO   ?= "clang -shared $(LDFLAGS) -o ~exec-file~.so ~exec-file~.o"
+ 
+ AR        ?= ar
+ LIBTOOL   ?= libtool
+@@ -114,3 +115,5 @@ else
+ PLATFORM=unix
+ endif
+ endif
++
++PLATFORM=android
